@@ -1,5 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import { addNumAction } from ".";
+import UserChange from "./Components/UserChange";
+import UserForm from "./Components/UserForm";
+import UsersList from "./Components/UsersList";
 
 
 function App() {
@@ -16,6 +19,9 @@ function App() {
       <>
          <div>{numbers}</div>
          <button onClick={addNum}>AddNum</button>
+         <UserForm />
+         <UsersList />
+         <UserChange />
       </>
    );
 }
