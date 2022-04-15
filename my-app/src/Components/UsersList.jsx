@@ -8,8 +8,7 @@ const UsersList = () => {
    const dispach = useDispatch();
 
    const removeUser = (user) => {
-      let newUsers = users.filter(u => u.age !== user.age)
-      dispach(removeUserAction(newUsers))
+      dispach(removeUserAction(user.name, user.age))
    }
 
    return (

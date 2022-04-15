@@ -18,7 +18,7 @@ const reducer = (state = defaultState, action) => {
          return { ...state, users: [...state.users, action.payload] }
       }
       case "REMOVEUSER": {
-         return { ...state, users: action.payload }
+         return { ...state, users: state.users.filter(u => u.age !== action.payload.age || u.name !== action.payload.name) }
       }
       case "FINDANDCHANGE": {
          const users = state.users.map(user => {
@@ -45,8 +45,8 @@ export const addUserAction = (user) => {
    return { type: 'ADDUSER', payload: user }
 }
 
-export const removeUserAction = (newUsers) => {
-   return { type: 'REMOVEUSER', payload: newUsers }
+export const removeUserAction = (name, age) => {
+   return { type: 'REMOVEUSER', payload: { name: name, age: age } }
 }
 
 export const findAndChangeUserAction = (name, newName, newAge) => {
