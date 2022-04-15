@@ -21,7 +21,15 @@ const reducer = (state = defaultState, action) => {
          return { ...state, users: action.payload }
       }
       case "FINDANDCHANGE": {
-         return { ...state, users: action.payload }
+         const users = state.users.map(user => {
+            if (user.name == action.payload.name) {
+               user.name = action.payload.newName;
+               user.age = action.payload.newAge;
+               return user
+            }
+            return user
+         })
+         return { ...state, users: users }
       }
       default: {
          return state
@@ -41,8 +49,9 @@ export const removeUserAction = (newUsers) => {
    return { type: 'REMOVEUSER', payload: newUsers }
 }
 
-export const findAndChangeUserAction = (users) => {
-   return { type: 'FINDANDCHANGE', payload: users }
+export const findAndChangeUserAction = (name, newName, newAge) => {
+   console.log(`${name}, ${newName}, ${newAge}`)
+   return { type: 'FINDANDCHANGE', payload: { name: name, newName: newName, newAge: newAge } }
 }
 
 const store = createStore(reducer)

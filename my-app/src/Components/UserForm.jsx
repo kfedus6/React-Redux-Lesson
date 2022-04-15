@@ -7,7 +7,6 @@ const UserForm = () => {
 
    const dispach = useDispatch();
 
-
    const addUser = () => {
       dispach(addUserAction(user));
    }
